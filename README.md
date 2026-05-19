@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SafeTicket
+
+פלטפורמה מאובטחת לקנייה ומכירה של כרטיסים יד שנייה.
+
+## Tech Stack
+
+- **Next.js 16** (App Router)
+- **React 19** + TypeScript
+- **Tailwind CSS** (v4)
+- **Supabase** (Auth + Database)
+- **Lucide React** (Icons)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env.local
+
+# Update .env.local with your Supabase credentials
+# NEXT_PUBLIC_SUPABASE_URL=your-url
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=your-key
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Database Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run the SQL in `supabase/schema.sql` in your Supabase SQL editor to create all tables.
+Optionally run `supabase/seed.sql` for sample event data.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                    # Next.js pages (App Router)
+│   ├── admin/              # Admin dashboard
+│   ├── auth/               # Login, Signup, Forgot Password
+│   ├── checkout/           # Buyer checkout flow
+│   ├── contact/            # Contact page
+│   ├── dashboard/          # User, Buyer, Seller dashboards
+│   ├── faq/                # FAQ page
+│   ├── how-it-works/       # How it works page
+│   ├── sell/               # Sell ticket form
+│   ├── support/            # Disputes & support
+│   ├── tickets/            # Browse & ticket details
+│   └── verify/             # Identity verification
+├── components/
+│   ├── layout/             # Navbar, Footer
+│   ├── tickets/            # TicketCard, FilterBar
+│   └── ui/                 # StatusBadge, DashboardCard, etc.
+├── data/                   # Mock data
+├── lib/                    # Supabase client
+└── types/                  # TypeScript types
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Hebrew RTL-first design
+- Dark premium UI
+- Buyer protection (escrow) messaging
+- Anti-fraud UX (verification badges, risk flags)
+- Price enforcement (asking price ≤ face value)
+- Full user/seller/admin dashboards
+- Mock payment flow with status tracking
+- Dispute workflow
+- Mobile-first responsive design
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ready for deployment on Vercel:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```
+
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase anon/public key |
