@@ -166,6 +166,17 @@ export default function TasksPage() {
     setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, active: true } : t)));
   }
 
+  const [confirmPermanentDeleteId, setConfirmPermanentDeleteId] = useState<string | null>(null);
+
+  function permanentlyDeleteTask(id: string) {
+    if (confirmPermanentDeleteId === id) {
+      setTasks((prev) => prev.filter((t) => t.id !== id));
+      setConfirmPermanentDeleteId(null);
+    } else {
+      setConfirmPermanentDeleteId(id);
+    }
+  }
+
   function toggleTask(task: EmployeeTask) {
     if (expandedId === task.id && !isNew) {
       setExpandedId(null);
@@ -231,7 +242,7 @@ export default function TasksPage() {
   function renderInlineForm(task?: EmployeeTask) {
     return (
       <tr>
-        <td colSpan={visibleColumns.length + 1} className="p-0">
+        <td colSpan={visibleColumns.length + 1 + (showArchived ? 1 : 0)} className="p-0">
           <div className="border-t border-[var(--accent)]/20 bg-emerald-50/30 px-6 py-5">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-sm font-semibold text-[var(--foreground)]">
@@ -410,6 +421,34 @@ export default function TasksPage() {
         onClick={() => !showArchived && toggleTask(t)}
         className={`transition-colors ${!showArchived ? 'cursor-pointer' : ''} ${isExpanded ? 'bg-emerald-50/60' : 'hover:bg-[var(--input-bg)]'}`}
       >
+        {showArchived && (
+          <td className="px-3 py-3.5 text-sm">
+            {confirmPermanentDeleteId === t.id ? (
+              <span className="flex items-center gap-1">
+                <button
+                  onClick={(e) => { e.stopPropagation(); permanentlyDeleteTask(t.id); }}
+                  className="rounded px-1.5 py-0.5 text-xs font-medium text-red-600 transition hover:bg-red-50"
+                >
+                  מחק
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); setConfirmPermanentDeleteId(null); }}
+                  className="rounded px-1.5 py-0.5 text-xs text-[var(--muted)] transition hover:bg-[var(--input-bg)]"
+                >
+                  בטל
+                </button>
+              </span>
+            ) : (
+              <button
+                onClick={(e) => { e.stopPropagation(); permanentlyDeleteTask(t.id); }}
+                title="מחק לצמיתות"
+                className="rounded-lg p-1.5 text-[var(--muted)] transition hover:bg-red-50 hover:text-red-600"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            )}
+          </td>
+        )}
         {visibleColumns.map((col) => renderCell(col.key, t))}
         <td className="px-3 py-3.5 text-sm">
           {showArchived ? (
@@ -438,6 +477,7 @@ export default function TasksPage() {
   function renderTableHead() {
     return (
       <tr className="border-b border-[var(--card-border)]">
+        {showArchived && <th className="w-10 px-3 py-3.5" />}
         {visibleColumns.map((col) => (
           <th
             key={col.key}
