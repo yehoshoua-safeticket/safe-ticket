@@ -5,5 +5,3 @@ Marketing & Growth Ideas (Early Brainstorming)
 3. Users can report potential scammers / unauthorized resellers on social media (helps build community trust).
 4. For the first ~100 events, send a co-founder to the venue entrance to physically verify ticket validity with customers — builds confidence and generates content for social proof.
 5. Communicate on social media about physical presence at events (stories, posts showing real people entering with SafeTicket tickets).
-
-Note: These are early brainstorming ideas. Not all may be implemented. See /doc/processes.txt for finalized operational processes and /doc/open-questions.txt for strategic questions still under discussion.

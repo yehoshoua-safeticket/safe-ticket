@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Shield, Eye, EyeOff, Loader2 } from 'lucide-react';
-import { login } from '@/app/auth/actions';
+import { login } from '@/app/(public)/auth/actions';
 
 export default function LoginPage() {
   const router = useRouter();

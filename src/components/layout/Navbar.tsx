@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, Shield, User, LogOut, Loader2 } from 'lucide-react';
 import { createClient } from '@/lib/supabase';
-import { logout } from '@/app/auth/actions';
+import { logout } from '@/app/(public)/auth/actions';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 
 const navLinks = [

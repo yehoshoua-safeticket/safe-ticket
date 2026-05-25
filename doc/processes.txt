@@ -36,7 +36,7 @@ Step 2: Seller uploads ticket file
 
 Step 3: Seller enters selling price
 - Must be ≤ face value printed on the ticket
-- Platform will verify this (MVP: admin checks manually, later: OCR)
+- Platform will verify this (MVP: admin checks manually, V1: OCR)
 
 Step 4: Listing submitted for review
 - Status: "pending review"

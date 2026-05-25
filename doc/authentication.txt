@@ -17,7 +17,7 @@ AUTHENTICATION METHODS
 WHY EMAIL/PASSWORD:
 - Universal method, no dependency on third-party OAuth providers
 - Supabase handles hashing (bcrypt), rate limiting, and email verification
-- Israeli users may not all have Google/Facebook accounts set up for login
+
 
 
 SESSION MANAGEMENT

@@ -101,3 +101,26 @@ export interface AdminNote {
   note: string;
   created_at: string;
 }
+
+export type TaskStatus = 'todo' | 'done' | 'canceled';
+export type TaskUser = 'יהושע' | 'אלעד' | 'יחיאל';
+
+export interface TaskFile {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  url: string;
+}
+
+export interface EmployeeTask {
+  id: string;
+  name: string;
+  description: string;
+  user: TaskUser;
+  status: TaskStatus;
+  active: boolean;
+  files: TaskFile[];
+  created_at: string;
+  created_by: string;
+}

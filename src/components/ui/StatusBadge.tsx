@@ -28,6 +28,9 @@ const statusStyles: Record<string, { bg: string; text: string; label: string }> 
   resolved_seller: { bg: 'bg-blue-50', text: 'text-blue-700', label: 'נפתר לטובת המוכר' },
   closed: { bg: 'bg-stone-100', text: 'text-stone-600', label: 'סגור' },
   pending_release: { bg: 'bg-amber-50', text: 'text-amber-700', label: 'ממתין לשחרור' },
+  todo: { bg: 'bg-blue-50', text: 'text-blue-700', label: 'לביצוע' },
+  done: { bg: 'bg-emerald-50', text: 'text-emerald-700', label: 'בוצע' },
+  canceled: { bg: 'bg-stone-100', text: 'text-stone-600', label: 'בוטל' },
 };
 
 interface StatusBadgeProps {
